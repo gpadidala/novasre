@@ -25,7 +25,7 @@
 
 ## 🌟 What is NovaSRE?
 
-NovaSRE is a **production-grade, self-hosted AI platform** that unifies the full Grafana observability stack into a single intelligent investigation agent. Inspired by the best patterns from [IncidentFox](https://github.com/incidentfox/incidentfox), [HolmesGPT](https://github.com/robusta-dev/holmesgpt), and [k8sgpt](https://github.com/k8sgpt-ai/k8sgpt), NovaSRE brings together:
+NovaSRE is a **production-grade, self-hosted AI platform** that unifies the full Grafana observability stack into a single intelligent investigation agent. NovaSRE brings together:
 
 - **Multi-agent RCA** — Specialist AI agents run parallel investigations across every signal source
 - **3-layer alert correlation** — Temporal + topological + semantic noise reduction (85–95% alert noise cut)
