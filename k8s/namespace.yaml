@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: novasre
+  labels:
+    app.kubernetes.io/name: novasre
+    app.kubernetes.io/managed-by: kubectl
+  annotations:
+    description: "NovaSRE — AI-powered SRE observability platform"

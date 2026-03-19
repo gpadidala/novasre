@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: novasre-frontend
+  namespace: novasre
+  labels:
+    app: novasre-frontend
+    app.kubernetes.io/name: novasre-frontend
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/part-of: novasre
+spec:
+  type: ClusterIP
+  selector:
+    app: novasre-frontend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      protocol: TCP

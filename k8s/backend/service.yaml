@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: novasre-backend
+  namespace: novasre
+  labels:
+    app: novasre-backend
+    app.kubernetes.io/name: novasre-backend
+    app.kubernetes.io/component: api
+    app.kubernetes.io/part-of: novasre
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8000"
+    prometheus.io/path: "/metrics"
+spec:
+  type: ClusterIP
+  selector:
+    app: novasre-backend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+      protocol: TCP
+    - name: metrics
+      port: 9090
+      targetPort: 8000
+      protocol: TCP

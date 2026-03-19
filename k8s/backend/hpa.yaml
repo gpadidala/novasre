@@ -1,0 +1,57 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: novasre-backend-hpa
+  namespace: novasre
+  labels:
+    app: novasre-backend
+    app.kubernetes.io/name: novasre-backend-hpa
+    app.kubernetes.io/component: autoscaling
+    app.kubernetes.io/part-of: novasre
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: novasre-backend
+
+  minReplicas: 2
+  maxReplicas: 10
+
+  metrics:
+    # Scale on CPU utilisation — primary signal for API load
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+
+    # Scale on memory utilisation — important for vector/embedding workloads
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
+
+  behavior:
+    # Scale up fast to handle incident surges
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+        - type: Pods
+          value: 2
+          periodSeconds: 60
+        - type: Percent
+          value: 100
+          periodSeconds: 60
+      selectPolicy: Max
+
+    # Scale down slowly to avoid thrashing during active investigations
+    scaleDown:
+      stabilizationWindowSeconds: 300   # 5 minutes
+      policies:
+        - type: Pods
+          value: 1
+          periodSeconds: 120
+      selectPolicy: Min

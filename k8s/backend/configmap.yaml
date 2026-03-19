@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: novasre-backend-config
+  namespace: novasre
+  labels:
+    app: novasre-backend
+    app.kubernetes.io/name: novasre-backend
+    app.kubernetes.io/component: config
+    app.kubernetes.io/part-of: novasre
+data:
+  # Application
+  APP_ENV: "production"
+  LOG_LEVEL: "INFO"
+  CORS_ORIGINS: "https://novasre.your-org.com"
+
+  # LLM models (keys come from Secret)
+  OPENAI_MODEL_PRIMARY: "gpt-4o"
+  OPENAI_MODEL_FAST: "gpt-4o-mini"
+  OPENAI_EMBEDDING_MODEL: "text-embedding-3-large"
+
+  # Database — host only; credentials from Secret
+  # DATABASE_URL is assembled in the Secret with password placeholder
+  CHROMA_HOST: "chromadb"
+  CHROMA_PORT: "8000"
+  CHROMA_COLLECTION_INCIDENTS: "novasre_incidents"
+  CHROMA_COLLECTION_RUNBOOKS: "novasre_runbooks"
+
+  # MCP Server
+  MCP_SERVER_URL: "http://novasre-mcp-server"
+
+  # Alert Correlation Tuning
+  CORRELATION_TEMPORAL_WINDOW_SECONDS: "300"
+  CORRELATION_SEMANTIC_THRESHOLD: "0.75"
+  CORRELATION_TOPOLOGICAL_DEPTH: "3"
+
+  # Grafana stack base URLs (no credentials)
+  # Actual API keys come from Secret
+  GRAFANA_ORG_ID: "1"

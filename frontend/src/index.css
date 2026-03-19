@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    @apply bg-gray-950 text-gray-100 antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+      sans-serif;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-700 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-600;
+  }
+}
+
+@layer components {
+  /* Prose overrides for dark mode */
+  .prose-invert pre {
+    @apply bg-gray-800 text-gray-200;
+  }
+
+  .prose-invert code {
+    @apply bg-gray-800 text-yellow-300;
+  }
+
+  .prose-invert a {
+    @apply text-indigo-400 hover:text-indigo-300;
+  }
+
+  /* Signal source accent classes */
+  .signal-mimir {
+    @apply text-purple-400 border-purple-500/30 bg-purple-500/10;
+  }
+
+  .signal-loki {
+    @apply text-yellow-400 border-yellow-500/30 bg-yellow-500/10;
+  }
+
+  .signal-tempo {
+    @apply text-cyan-400 border-cyan-500/30 bg-cyan-500/10;
+  }
+
+  .signal-pyroscope {
+    @apply text-orange-400 border-orange-500/30 bg-orange-500/10;
+  }
+
+  .signal-faro {
+    @apply text-pink-400 border-pink-500/30 bg-pink-500/10;
+  }
+}
+
+@layer utilities {
+  .bg-gray-850 {
+    background-color: #161b27;
+  }
+}
